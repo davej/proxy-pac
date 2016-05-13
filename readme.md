@@ -30,7 +30,7 @@ proxyPac.getServices().then(services => console.log(services));
 proxyPac.getNamed('Thunderbolt Bridge').then(pac => console.log(pac));
 //=> { name: 'Thunderbolt Bridge', url: null, enabled: false }
 
-proxyPac.setNamed('Thunderbolt Bridge', 'http:localhost:1234/proxy.pac')
+proxyPac.setNamed('Thunderbolt Bridge', 'http://localhost:1234/proxy.pac')
   .then(pac => console.log(pac));
 //=> { name: 'Thunderbolt Bridge', url: 'http:localhost:1234/proxy.pac', enabled: true }
 
