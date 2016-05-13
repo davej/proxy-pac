@@ -31,7 +31,7 @@ test('getServices', t => {
 
 if (process.env.CI === 'true') {
   test('getNamedCI', t =>
-    proxyPac.getNamed('Thunderbolt Bridge').then(pac => {
+    proxyPac.getNamed('Ethernet').then(pac => {
       t.is(pac.url, null);
       t.false(pac.enabled);
     })
