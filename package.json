@@ -1,6 +1,6 @@
 {
   "name": "proxy-pac",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Get/set proxy auto-config (PAC) file. Currently only supports OS X.",
   "license": "MIT",
   "repository": "davej/proxy-pac",
