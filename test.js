@@ -37,7 +37,7 @@ if (process.env.CI === 'true') {
     })
   );
 
-  test.serial('getCurrentCI', t =>
+  test('getCurrentCI', t =>
     proxyPac.getCurrent().then(pac => {
       t.is(pac.url, null);
       t.false(pac.enabled);
