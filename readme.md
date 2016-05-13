@@ -19,10 +19,10 @@ proxyPac.getActiveService().then(activeDevice => console.log(activeDevice));
 //=> 'Wi-Fi'
 
 proxyPac.getAll().then(services => console.log(services));
-//=> [ { name: 'Bluetooth DUN 2', pac: { url: null, enabled: false } },
-//     { name: 'Wi-Fi', pac: { url: 'http://test.com/proxy.pac', enabled: true } },
-//     { name: 'Bluetooth PAN', pac: { url: null, enabled: false } },
-//     { name: 'Thunderbolt Bridge', pac: { url: null, enabled: false } } ]
+//=> [ { name: 'Bluetooth DUN 2', url: null, enabled: false },
+//     { name: 'Wi-Fi', url: 'http://test.com/proxy.pac', enabled: true },
+//     { name: 'Bluetooth PAN', url: null, enabled: false },
+//     { name: 'Thunderbolt Bridge', url: null, enabled: false } ]
 
 proxyPac.getServices().then(services => console.log(services));
 //=> [ 'Bluetooth DUN 2', 'Wi-Fi', 'Bluetooth PAN', 'Thunderbolt Bridge' ]

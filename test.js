@@ -1,22 +1,26 @@
 import test from 'ava';
 import proxyPac from './';
 
-test('getActiveService', t =>
-  proxyPac.getActiveService().then(activeDevice => {
-    t.is(typeof activeDevice, 'string');
-    t.true(activeDevice.length > 2);
-  })
-);
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+let originalProxyPacs;
 
-test('getAll', t =>
+test.serial('getAll', t =>
   proxyPac.getAll().then(services => {
     t.true(Array.isArray(services));
     services.forEach(service => {
       t.is(typeof service.name, 'string');
-      t.not(typeof service.pac.url, 'undefined');
-      t.is(typeof service.pac.enabled, 'boolean');
+      t.not(typeof service.url, 'undefined');
+      t.is(typeof service.enabled, 'boolean');
     });
+    originalProxyPacs = services;
     t.pass();
+  })
+);
+
+test('getActiveService', t =>
+  proxyPac.getActiveService().then(activeDevice => {
+    t.is(typeof activeDevice, 'string');
+    t.true(activeDevice.length > 2);
   })
 );
 
@@ -45,8 +49,6 @@ if (process.env.CI === 'true') {
   );
 } else {
   // Don't run these test in CI because they require manual authentication
-
-  console.warn('These tests will reset all proxy pac settings.');
 
   test.serial('setNamed', t =>
     proxyPac.setNamed('Thunderbolt Bridge', 'foobar').then(pac => {
@@ -112,4 +114,19 @@ if (process.env.CI === 'true') {
       t.pass();
     })
   );
+
+  let enabledPacs;
+  test.serial('resetToOriginal', t => {
+    // reset
+    enabledPacs = (originalProxyPacs || []).filter(service => Boolean(service.enabled));
+    enabledPacs.map((service, i) =>
+      delay(500 * i).then(() =>
+        proxyPac.setNamed(service.name, service.url).then(pac => {
+          t.is(pac.name, service.name);
+          t.is(pac.url, service.url);
+          t.true(pac.enabled);
+        })
+      )
+    );
+  });
 }
