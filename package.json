@@ -1,0 +1,43 @@
+{
+  "name": "proxy-pac",
+  "version": "1.0.0",
+  "description": "Get/set proxy auto-config (PAC) file. Currently only supports OS X.",
+  "license": "MIT",
+  "repository": "davej/proxy-pac",
+  "author": {
+    "name": "DaveJ",
+    "email": "dave@davejeffery.com",
+    "url": "twitter.com/DaveJ"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js",
+    "lib/darwin.js"
+  ],
+  "keywords": [
+    "proxy",
+    "pac",
+    "networksetup",
+    "osx",
+    "os x",
+    "network"
+  ],
+  "dependencies": {
+    "async": "^2.0.0-rc.4",
+    "execa": "^0.4.0",
+    "network": "^0.1.3",
+    "pify": "^2.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.8.0",
+    "xo": "^0.12.1"
+  },
+  "xo": {
+    "space": 2
+  }
+}
